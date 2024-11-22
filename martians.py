@@ -18,7 +18,6 @@ while mark1 > 7 or mark2 > 7 or mark3 > 7 or mark1 < 0 or mark2 < 0 or mark3 < 0
     mark2 = int(input())
     mark3 = int(input())
 
-
 while mark1 != km1 or mark2 == km2 or mark3 == km3:
     foundcargo = 0
     if mark1 == km1:
