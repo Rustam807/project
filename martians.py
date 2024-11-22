@@ -7,6 +7,7 @@ cargo1 = [km1, 250]
 cargo2 = [km2, 300]
 cargo3 = [km3, 163]
 
+print("Enter 3 marks")
 mark1 = int(input())
 mark2 = int(input())
 mark3 = int(input())
@@ -32,6 +33,7 @@ else:
         cargo2 = [km2, 300]
         cargo3 = [km3, 163]
 
+        print("Enter 3 marks")
         mark1 = int(input())
         mark2 = int(input())
         mark3 = int(input())
