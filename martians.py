@@ -12,7 +12,7 @@ mark1 = int(input())
 mark2 = int(input())
 mark3 = int(input())
 
-while mark1 > 7 or mark2 > 7 or mark3 > 7:
+while mark1 > 7 or mark2 > 7 or mark3 > 7 or mark1 < 0 or mark2 < 0 or mark3 < 0:
     print("It's only 7 km to city. Martians have made a mistake with their marks. They should enter them again")
     mark1 = int(input())
     mark2 = int(input())
@@ -44,13 +44,12 @@ else:
         mark2 = int(input())
         mark3 = int(input())
 
-        while mark1 > 7 or mark2 > 7 or mark3 > 7:
+        while mark1 > 7 or mark2 > 7 or mark3 > 7 or mark1 < 0 or mark2 < 0 or mark3 < 0:
             print("It's only 7 km to city. Martians have made a mistake with their marks. They should enter them again")
             mark1 = int(input())
             mark2 = int(input())
             mark3 = int(input())
 
-
         if mark1 == km1 and mark2 == km2 and mark3 == km3:
-            print("Martians have succesfully found all 713 kg of cargo")
             break
+print("Martians have succesfully found all 713 kg of cargo")
