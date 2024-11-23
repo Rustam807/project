@@ -84,3 +84,70 @@ banned_cells_calculator(ship3x[2])
 # Spawning 3x ship
 
 print(ship1x_1, ship1x_2, ship1x_3, ship1x_4, ship2x_1, ship2x_2, ship3x)
+
+def determine_cell(cell):
+    column = cell[0].upper()  
+    row = int(cell[1])  
+    
+    column_number = ord(column) - ord('A') + 1
+    
+    cell_number = (column_number - 1) * 7 + row
+    return cell_number
+all_ships = ship1x_1 + ship1x_2 + ship1x_3 + ship1x_4 + ship2x_1 + ship2x_2 + ship3x
+taken_shots = []
+
+print("Enter your name")
+name = input()
+
+guess_board = [[0] * 7 for _ in range(7)]
+print("  A B C D E F G")
+row_number = 1
+for row in guess_board:
+    print(row_number, end=" ")
+    for elem in row:
+        print(elem, end=" ")  
+    row_number += 1
+    print() 
+
+print()
+
+print("Take a shot. - is miss, + is hit, S is sunk")
+shot = input()
+while len(shot) != 2 or shot[0] not in "ABCDEFG" or shot[1] not in '1234567' or determine_cell(shot) in taken_shots:
+    print("Invalid input or you have already shot this square. Try again")
+    shot = input()
+
+if determine_cell(shot) not in all_ships:
+    guess_board[determine_cell(shot)] = "-"
+else:
+    guess_board[determine_cell(shot)] = "+"
+
+if all(item in taken_shots for item in ship1x_1):
+    guess_board[ship1x_1[0]] = "S"
+if all(item in taken_shots for item in ship1x_2):
+    guess_board[ship1x_2[0]] = "S"
+if all(item in taken_shots for item in ship1x_3):
+    guess_board[ship1x_3[0]] = "S"
+if all(item in taken_shots for item in ship1x_4):
+    guess_board[ship1x_4[0]] = "S"
+
+if all(item in taken_shots for item in ship2x_1):
+    guess_board[ship2x_1[0]] = "S"
+    guess_board[ship2x_1[1]] = "S"
+if all(item in taken_shots for item in ship2x_2):
+    guess_board[ship2x_2[0]] = "S"
+    guess_board[ship2x_2[1]] = "S"
+
+if all(item in taken_shots for item in ship3x):
+    guess_board[ship3x[0]] = "S"
+    guess_board[ship3x[1]] = "S"
+    guess_board[ship3x[2]] = "S"
+
+print("  A B C D E F G")
+row_number = 1
+for row in guess_board:
+    print(row_number, end=" ")
+    for elem in row:
+        print(elem, end=" ")  
+    row_number += 1
+    print()
