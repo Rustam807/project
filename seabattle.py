@@ -4,6 +4,8 @@ import os
 cells = list(range(1, 50))  
 board = [cells[i:i + 7] for i in range(0, len(cells), 7)]
 another_game = "YES"
+scores = []
+names = []
 
 def banned_cells_calculator(a):
     return banned_cells.extend([a, a - 1, a + 1, a - 8, a - 7, a - 6, a + 6, a + 7, a + 8])
@@ -15,10 +17,8 @@ def determine_cell(cell):
 
 while another_game == "YES":
     banned_cells = []
-    names = []
     taken_shots = []
-    scores = []
-
+    
     # Spawning 3x ship
     ship3x = [random.randint(1, 49)]
     while ship3x[0] in banned_cells:
@@ -114,7 +114,7 @@ while another_game == "YES":
         print()
         row_number += 1
 
-    while all(item in taken_shots for item in all_ships) != True:
+    while all(item in taken_shots for item in all_ships) == False:
         print()
         print("Take a shot. + is hit, - is miss, S is sunk")
         shot = input()
@@ -328,9 +328,6 @@ while another_game == "YES":
     scores.append(len(taken_shots))
     print("You've won. Do you want to start another game? Enter YES or NO")
     another_game = input()
-    while another_game != "YES" or another_game != "NO":
-        print("Invalid input. Enter YES or NO.")
-        another_game = input()
 
 print("Scoreboard")
 players = list(zip(names, scores))
