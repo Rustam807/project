@@ -23,22 +23,25 @@ while another_game == "YES":
     ship3x = [random.randint(1, 49)]
     while ship3x[0] in banned_cells:
         ship3x = [random.randint(1, 49)]
-    if ship3x[0] + 7 not in banned_cells and ship3x[0] + 7 in cells:
-        ship3x.append(ship3x[0] + 7)
-    elif ship3x[0] - 7 not in banned_cells and ship3x[0] - 7 in cells:
-        ship3x.append(ship3x[0] - 7)
-    elif ship3x[0] + 1 not in banned_cells and ship3x[0] + 1 in cells:
-        ship3x.append(ship3x[0] + 1)
-    elif ship3x[0] - 1 not in banned_cells and ship3x[0] - 1 in cells:
-        ship3x.append(ship3x[0] - 1)
-    if ship3x[1] + 7 not in banned_cells and ship3x[1] + 7 in cells:
-        ship3x.append(ship3x[1] + 7)
-    elif ship3x[1] - 7 not in banned_cells and ship3x[1] - 7 in cells:
-        ship3x.append(ship3x[1] - 7)
-    elif ship3x[1] + 1 not in banned_cells and ship3x[1] + 1 in cells:
-        ship3x.append(ship3x[1] + 1)
-    elif ship3x[1] - 1 not in banned_cells and ship3x[1] - 1 in cells:
-        ship3x.append(ship3x[1] - 1)
+    orientation = random.choice(["vertical", "horizontal"])
+    if orientation == "vertical":   
+        if ship3x[0] + 7 not in banned_cells and ship3x[0] + 7 in cells and ship3x[0] + 7 not in ship3x:
+            ship3x.append(ship3x[0] + 7)
+        elif ship3x[0] - 7 not in banned_cells and ship3x[0] - 7 in cells and ship3x[0] - 7 not in ship3x:
+            ship3x.append(ship3x[0] - 7)
+        if ship3x[1] + 7 not in banned_cells and ship3x[1] + 7 in cells and ship3x[1] + 7 not in ship3x:
+            ship3x.append(ship3x[1] + 7)
+        elif ship3x[1] - 7 not in banned_cells and ship3x[1] - 7 in cells and ship3x[1] - 7 not in ship3x:
+            ship3x.append(ship3x[1] - 7)
+    if orientation == "horizontal":
+        if ship3x[0] + 1 not in banned_cells and ship3x[0] + 1 in cells and ship3x[0] + 1 not in ship3x:
+            ship3x.append(ship3x[0] + 1)
+        elif ship3x[0] - 1 not in banned_cells and ship3x[0] - 1 in cells and ship3x[0] - 1 not in ship3x:
+            ship3x.append(ship3x[0] - 1)
+        elif ship3x[1] + 1 not in banned_cells and ship3x[1] + 1 in cells and ship3x[1] + 1 not in ship3x:
+            ship3x.append(ship3x[1] + 1)
+        elif ship3x[1] - 1 not in banned_cells and ship3x[1] - 1 in cells and ship3x[1] - 1 not in ship3x:
+            ship3x.append(ship3x[1] - 1)
     banned_cells_calculator(ship3x[0])
     banned_cells_calculator(ship3x[1])
     banned_cells_calculator(ship3x[2])
@@ -48,14 +51,17 @@ while another_game == "YES":
     ship2x_1 = [random.randint(1, 49)]
     while ship2x_1[0] in banned_cells:
         ship2x_1 = [random.randint(1, 49)]
-    if ship2x_1[0] + 7 not in banned_cells and ship2x_1[0] + 7 in cells:
-        ship2x_1.append(ship2x_1[0] + 7)
-    elif ship2x_1[0] - 7 not in banned_cells and ship2x_1[0] - 7 in cells:
-        ship2x_1.append(ship2x_1[0] - 7)
-    elif ship2x_1[0] + 1 not in banned_cells and ship2x_1[0] + 1 in cells:
-        ship2x_1.append(ship2x_1[0] + 1)
-    elif ship2x_1[0] - 1 not in banned_cells and ship2x_1[0] - 1 in cells:
-        ship2x_1.append(ship2x_1[0] - 1)
+    orientation = random.choice(["vertical", "horizontal"])
+    if orientation == "vertical":
+        if ship2x_1[0] + 7 not in banned_cells and ship2x_1[0] + 7 in cells:
+            ship2x_1.append(ship2x_1[0] + 7)
+        elif ship2x_1[0] - 7 not in banned_cells and ship2x_1[0] - 7 in cells:
+            ship2x_1.append(ship2x_1[0] - 7)
+    if orientation == "horizontal":
+        if ship2x_1[0] + 1 not in banned_cells and ship2x_1[0] + 1 in cells:
+            ship2x_1.append(ship2x_1[0] + 1)
+        elif ship2x_1[0] - 1 not in banned_cells and ship2x_1[0] - 1 in cells:
+            ship2x_1.append(ship2x_1[0] - 1)
     banned_cells_calculator(ship2x_1[0])
     banned_cells_calculator(ship2x_1[1])
 
@@ -118,7 +124,7 @@ while another_game == "YES":
         print()
         print("Take a shot. + is hit, - is miss, S is sunk")
         shot = input()
-        while len(shot) != 2 or shot[0] not in "ABCDEFG" or shot[1] not in "1234567":
+        while len(shot) != 2 or shot[0] not in "ABCDEFG" or shot[1] not in "1234567" or determine_cell(shot) in taken_shots:
             print("You shot this square before or you've made a mistake. Try again")
             shot = input()
         taken_shots.append(determine_cell(shot))
