@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 
+#1 — You can use any type of data
+
 #2
 month_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 months = pd.Series(month_num, index = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
